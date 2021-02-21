@@ -1,0 +1,36 @@
+/*for the home page*/
+a{
+	color: #1687a7;
+}
+/* The animation code */
+@keyframes example {
+  from {background-color: red;}
+  to {background-color: yellow;}
+}
+.navbar{
+	animation-name: example;
+	animation-delay: 4s;
+	padding:30px;
+	background-color: #ffe227;
+	margin-bottom: 20px;
+}
+.navbar-brand{
+	font-size: 2rem;
+	font-family: 'Reggae One', cursive;
+	padding-left: 20px;
+	padding-right: 30px;
+}
+.nav_about_contact{
+	font-family: 'Akaya Kanadaka', cursive;
+	font-size: 1.5rem;
+	margin-right: 20px;
+}
+.nav_sign{
+	font-family: 'Akaya Kanadaka', cursive;
+	font-size: 1.5rem;
+	margin-right : 30px;
+}
+.nav_login{
+	font-family: 'Akaya Kanadaka', cursive;
+	font-size: 1.5rem;
+}

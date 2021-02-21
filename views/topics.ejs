@@ -1,0 +1,23 @@
+<%- include("partials/header.ejs") %>
+<h1 class="topicsh1">Thought Keeper</h1>
+<h3 class="topicsh3">Topics</h3>
+<div class="topics">
+<ul class="topicslist list-group">
+
+  <% newtopic.forEach(function(user){ %>
+    <li class=" list-group-item"><%= user.topic %> </li>
+  <% }) %>
+</ul>
+</div>
+
+<form class="topicsform" action="/topics" method="post">
+    <h2>Add a new topic</h2>
+    <input type="text" name="username" placeholder="User Name(optional)" autocomplete="off"><br>
+    <input type="text" name="topicname" placeholder="Topic Name" autocomplete="off"><br>
+    
+    <input type="email"  name="email"   placeholder="Email"><br>
+    <input type="password"  name="password"  placeholder="Password"><br>
+	<button type="submit" class="btn btn-info ">Add topic</button>
+	<a type="button" class="btn btn-light" href= "/topics" >Back</a>
+</form>
+<%- include("partials/footer") %>

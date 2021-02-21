@@ -1,0 +1,22 @@
+<%- include("partials/header.ejs") %>
+<table id="leaderboard">
+	<tr>
+		<tr>Rank</tr>
+		<th>Post</th>
+		<th>Likes</th>
+	</tr>
+	<tr>
+		<% post.forEach(data =>{ %>
+			<td value=1></td>
+			<td id="user_rank"><%= data.post.substring(0,7)+"..."%>
+				<a href= "/posts/<%= data.topic %>">ReadMore</a>
+			</td>
+			<td><%= data.like_count%></td>
+		</tr>
+		<% }); %>
+</table>
+<%- include("partials/footer.ejs") %>
+<script type="text/javascript">
+	let user_rank = document.getElementById('user_rank');
+	console.log(user_rank);
+</script>

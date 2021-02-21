@@ -1,0 +1,54 @@
+<%- include("partials/header.ejs") %>
+
+<h1 class="composeh1">Thought Keeper</h1>
+<h3 class="composeh3">Compose</h3>
+
+<h4 class="composeh4">Topic-<%= randomTopic  %></h4>
+
+<button type="button" onclick="timerfunc()" class="composebtn btn btn-primary btn-lg">Start typing </button>
+<p id="count"></p>
+
+<form class="composediv" action="/posts" method="POST">
+    <h5 name="topic">Topic-<%= randomTopic  %></h5>
+    <label>EMAIL HERE:</label>
+    <input type="text" name="email" placeholder="Email Here">
+    <label for="Speech Recognition">Or speak something:</label>
+    <textarea disabled id="userText" name="userInput" placeholder="Type here !" cols="50" rows="10" class="composetext"></textarea>
+    <textarea disabled type="text" name="userSpeech" id="speechTotext" placeholder="Speak something by clicking on me" onclick="record()"></textarea>
+    <button type="submit" class="btn btn-warning btn-lg">Submit</button>
+</form>
+
+
+<script type="text/javascript">
+    function record() {
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = "en-GB";
+        recognition.onresult = function(event) {
+            console.log(event);
+            document.getElementById("speechTotext").value = event.results[0][0].transcript;
+        }
+        recognition.start();
+    }
+
+    function timerfunc() {
+        var count = 60;
+        var interval = setInterval(function() {
+            document.getElementById('count').innerHTML = "Time Left: " + count + " seconds";
+            document.querySelector("button").style.visibility = "hidden";
+            document.querySelector("textarea").disabled = false;
+            document.getElementById("speechTotext").disabled = false;
+
+            count--;
+            if (count === 0) {
+                clearInterval(interval);
+                document.getElementById('count').innerHTML = "Time's Up!(";
+                document.querySelector("textarea").disabled = true;
+                document.getElementById("speechTotext").disabled = true;
+                alert("You're out of time!");
+                document.getElementById('count').innerHTML = "00";
+            }
+        }, 1000);
+    }
+
+</script>
+<%- include("partials/footer") %>

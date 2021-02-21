@@ -1,0 +1,13 @@
+<%- include("partials/header.ejs") %>
+
+    <h1>Thought Keeper</h1>
+    <h3 >Login</h3>
+    <form action="/login" method="post">
+        <input type="text" name="email" placeholder="Email">
+        <br>
+        <input type="text"  name="password" placeholder="Password">
+		<br>
+        <button type="submit" class="btn btn-primary ">Login</button>
+		<a type="button" class="btn btn-light" href= "/" >Back</a>
+    </form>
+<%- include("partials/footer.ejs") %>

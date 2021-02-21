@@ -1,0 +1,40 @@
+<%- include("partials/header.ejs") %>
+
+<h1>Thought Keeper</h1>
+<h3>Welcome to thoughtathon</h3>
+
+<a type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="See al the topics." class="topic btn btn-dark" href="/topics">Topics</a>
+
+<a type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Write your thoughts and you only get a minute." class="compose btn btn-warning" href="/compose">Compose</a>
+<a href="/leader-board">View Leader-Board</a>
+<input id="myInput" onkeyup="search_item()" type="text" placeholder="Search" style="display: block;">
+
+<% user.forEach(function(foundPost){ %>
+<li name="post" class="user_post">
+    <%=foundPost.post.substring(0,100)+" ..."%>
+    <%  let postTitle = foundPost.post.substring(0,7).toLowerCase().replace(/\s/g, ""); %>
+    <a href="/posts/<%= postTitle%>">Read more</a>
+</li>
+<% }) %>
+<%- include("partials/footer.ejs") %>
+<script>
+// JavaScript code
+function search_item() {
+    let post_items = [];
+	let input = document.getElementById('myInput').value
+	input=input.toLowerCase();
+	let user_post = document.getElementsByClassName('user_post');
+    post_items.push(user_post);
+    for (i = 0; i < user_post.length; i++) {
+        if (!user_post[i].innerHTML.toLowerCase().includes(input)) {
+            //this will trigger when there is no matching post
+            user_post[i].style.display="none";
+        }
+        else {
+            user_post[i].style.display="list-item";
+            user_post[i].style.color ="blue";
+        }
+    }
+}
+</script>
+

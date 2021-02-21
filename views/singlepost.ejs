@@ -1,0 +1,26 @@
+<%- include("partials/header.ejs") %>
+<form id="single_post_form" action="" method="POST">
+    <input id="form_url" type="hidden" name="action" value="">
+  <p name="single_post"><%= single_post %></p>
+    <script>
+        let url = window.location.href;
+        let url_search_num = url.search("posts/");
+        let url_sliced = url.slice(0, url_search_num);
+        let found_url = url.replace(url_sliced, "");
+        let required_url = found_url.replace("posts/", "");
+        const required_action_url = document.getElementById('single_post_form').action = "/posts/" + required_url;
+        const url_input = document.getElementById('form_url').value = "/posts/" + required_url;
+        console.log(required_action_url);
+
+    </script>
+    <button onclick="changingColor()" name="rgrwg" id="btn">Like <%= no_of_likes %></button>
+</form>
+<a href="/leader-board">View Leader-Board</a>
+<%- include("partials/footer.ejs") %>
+<script>
+	 const buttonElement = document.getElementById('btn');
+	function changingColor(){
+		buttonElement.style.backgroundColor="blue";
+	}
+
+</script>
